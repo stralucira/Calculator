@@ -80,9 +80,18 @@ class ViewController: UIViewController {
         displayValue = brain.result
         
     }//end of compute
-    
-    
+}// end of View Controller 
 
-
+// extend UIButton class
+extension UIButton {
+    func setBackgroundColor(color: UIColor, forState state: UIControlState) {
+        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
+        let context = UIGraphicsGetCurrentContext();
+        color.setFill()
+        CGContextFillRect(context, rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        setBackgroundImage(image, forState: state);
+    }
 }
-
