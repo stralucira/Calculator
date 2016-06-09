@@ -82,8 +82,12 @@ class ViewController: UIViewController {
     }//end of compute
 }// end of View Controller 
 
+protocol TextRepresentable {
+    var textualDescription: String { get }
+}
+
 // extend UIButton class
-extension UIButton {
+extension UIButton: TextRepresentable {
     func setBackgroundColor(color: UIColor, forState state: UIControlState) {
         let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0)
@@ -93,5 +97,13 @@ extension UIButton {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         setBackgroundImage(image, forState: state);
+    }
+    
+    var textualDescription: String {
+        get {
+            if let title = currentTitle {
+                return title
+            } else { return "Has no title" }
+        }
     }
 }
